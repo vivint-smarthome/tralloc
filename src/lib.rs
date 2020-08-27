@@ -144,25 +144,6 @@ unsafe fn print_size(address: usize, size: usize, action: Action) {
     }
 }
 
-// unsafe impl<'a> Alloc for &'a Allocator {
-//     unsafe fn alloc(&mut self, layout: Layout) -> Result<NonNull<u8>, AllocErr> {
-//         let size = layout.size();
-//         let res = System.alloc(layout);
-
-//         print_size(res as usize, size, Action::Allocating);
-
-//         Ok(NonNull::new(res).unwrap())
-//     }
-
-//     unsafe fn dealloc(&mut self, ptr: std::ptr::NonNull<u8>, layout: Layout) {
-//         let ptr = ptr.as_ptr();
-
-//         print_size(ptr as usize, layout.size(), Action::Deallocating);
-
-//         System.dealloc(ptr, layout)
-//     }
-// }
-
 unsafe impl GlobalAlloc for Allocator {
     unsafe fn alloc(&self, layout: Layout) -> *mut u8 {
         let size = layout.size();
